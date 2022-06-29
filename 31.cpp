@@ -33,15 +33,16 @@ int after(std::string & str){
   std::vector<int> appearence;
   
   for(auto x: str){
+    std::string x1 = {x}; 
     int sum = 0;
-    if (find(container.begin(), container.end(), x) != container.end()) {
-      container.emplace_back(x);
+    if (find(container.begin(), container.end(), x1) != container.end()) {
+      container.push_back(x1);
       for (auto letter: str) {
         if (x==letter){
           sum+=1;
         }
       }
-      appearence.emplace_back(sum);
+      appearence.push_back(sum);
     }
   }
 

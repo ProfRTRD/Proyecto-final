@@ -28,9 +28,10 @@ int main() {
 std::string codyfier(std::string &str) {
 
   std::string EmptyString;  // creamos un string vacío.
-  for (auto letter : str) { // recorremos el string (letra por letra)que pasamos por referencia. Recuerden que dicho string corresponde a un renglón entero del .txt
-   
-    std::string new_letter = getter(letter);// invocamos a la función getter, la cual nos daría una letra codificada.
+  for (auto  letter : str) { // recorremos el string (letra por letra)que pasamos por referencia. Recuerden que dicho string corresponde a un renglón entero del .txt
+  std::string s(1,letter);
+    //std::string s={letter};
+    std::string new_letter = getter(s);// invocamos a la función getter, la cual nos daría una letra codificada.
    EmptyString += new_letter; // Añadimos la letra modificada al string que creamos al inicio.
   }
   return EmptyString; // retornamos el string codificado
