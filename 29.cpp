@@ -11,13 +11,14 @@ std::string getter(std::string &st);
 int main() {
   std::ifstream myfile;
   std::ofstream fout("Coded.txt"); // Crear el documento en que vamos a añadir el texto modificado
-  myfile.open("Documento de prueba.txt"); // Abrimos el documento que vamos a leer.
+  myfile.open("pruebas.txt"); // Abrimos el documento que vamos a leer.
   std::string myline;  // creamos un string vacío.
   if (myfile.is_open()) { // verificamos que el documento esté abierto
     while (myfile) { // Va a leer desde el inicio hasta el fin del documento
-      std::getline(myfile, myline); // el string ahora toma el valor del primer renglón del documento que le pasamos
+      myfile >> myline;
+     // std::getline(myfile, myline); // el string ahora toma el valor del primer renglón del documento que le pasamos
       std::cout << myline << '\n'; // verificación de lo dicho anteriormente
-      fout << codyfier(myline); // invocación de la función codyfier, y adición  de su resultado a nuestro documento donde estamos escribiendo la codificación.
+      fout << codyfier(myline) << "\t"; // invocación de la función codyfier, y adición  de su resultado a nuestro documento donde estamos escribiendo la codificación.
     }
   } else { // se ejecuta sólo si el documento no está abierto
     std::cout << "Couldn't open file\n";
@@ -34,6 +35,7 @@ std::string codyfier(std::string &str) {
     std::string new_letter = getter(s);// invocamos a la función getter, la cual nos daría una letra codificada.
    EmptyString += new_letter; // Añadimos la letra modificada al string que creamos al inicio.
   }
+  
   return EmptyString; // retornamos el string codificado
 }
 
@@ -66,6 +68,18 @@ std::string getter(std::string &st) {
   Changer["x"] = "z";
   Changer["y"] = "a";
   Changer["z"] = "b";
+  Changer[" "] = " ";
+  Changer["."]= ".";
+  Changer["#"]= "#";
+  Changer["%"]= "%";
+  Changer["*"]= "*";
+  Changer["//"]= "/";
+  Changer["?"]="?";
+  Changer["-"]="-";
+  Changer["_"]="_";
+  
+  
+  
   auto determiner = Changer.find(st); // determinador del índice en donde se encuentra la letra que estamos buscando. Si la letra no está (por ser mayúscula), entonces nos da una posición externa al diccionario ( Changer.end() )
   if (determiner != Changer.end()) { // Si la letra está en el diccionario entonces...
     StrReturner = determiner->second; // accede a los valores de su respectiva llave. Es decir, retorna la letra modificada
